@@ -36,7 +36,7 @@ def movie_menu():
         if user_choice == ("a"):
             add_movie()
         elif user_choice == ("l"):
-            show_movie()
+            show_movie_details()
         elif user_choice == ("f"):
             find_movie()
         else:
@@ -55,8 +55,6 @@ def add_movie():
         'director': director.lower()
     })
 
-def show_movie():
-    show_movie_details()
 
 def show_movie_details():
     for movie in movies:
