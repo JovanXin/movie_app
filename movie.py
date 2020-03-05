@@ -14,7 +14,8 @@ Tasks:
 [x]: Show all movies
 [x]: Find movies
 [x]: Stop program with 'q'
-
+[x]: Allow user to remove movie
+[] : Allow user to sort by date released, name and director
 """
 
 movies = [] #defining list
@@ -30,7 +31,7 @@ movie = {
 
 
 def movie_menu():
-    user_choice = input("Enter 'a' to add movie, 'l' to see all movies, 'f' to find a movie and 'q' to quit")
+    user_choice = input("Enter 'a' to add movie, 'l' to see all movies, 'f' to find a movie, 'r' to remove a movie and 'q' to quit:")
 
     while user_choice != ("q"):
         if user_choice == ("a"):
@@ -39,14 +40,16 @@ def movie_menu():
             show_movie_details()
         elif user_choice == ("f"):
             find_movie()
+        elif user_choice == ("r"):
+            remove_movie()
         else:
             print("unknown command, try again")
-        user_choice = input("Enter 'a' to add movie, 'l' to see all movies, 'f' to find a movie and 'q' to quit")
+        user_choice = input("Enter 'a' to add movie, 'l' to see all movies, 'f' to find a movie, 'r' to remove a movie and 'q' to quit:")
 
 def add_movie():
     name = input("What is the name of the movie? :" )
-    year = int(input("What year was the movie released? : "))
-    director = input("What is the name of the director? : ")
+    year = int(input("What year was the movie released? :"))
+    director = input("What is the name of the director? :")
 
     movies.append({
 
@@ -63,13 +66,21 @@ def show_movie_details():
         print(f"Director: {movie['director']}")
 
 def find_movie():
-    search_type = input("What are you searching by? : ") #year, name, director
-    search_keyword = input("What are you searching for? : ")
+    search_type = input("What are you searching by? :") #year, name, director
+    search_keyword = input("What are you searching for? :")
     found_movies = [] 
     for movie in movies:
         if movie[search_type] == search_keyword.lower():
             found_movies.append(movie)
             show_movie_details()
+
+def remove_movie():
+    movieToRemove = input("What movie would you like to remove? :")
+    for movie in movies:
+        if movie['name'] == movieToRemove:
+            movies.remove(movie)
+        else:
+            print("The movie you chose to remove is not avaliable, try again :")
 
 movie_menu()
 
