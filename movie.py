@@ -10,13 +10,14 @@ Tasks:
 []: Decide where to store movies
 [x]: What is the format of the movie? - List
 [x]: Show user main interface/get input
+[x]: Allow user to add movie
 []: Show all movies
 []: Find movies
 []: Stop program with 'q'
 
 """
 
-movies = []
+movies = [] #defining list
 
 """
 movie = {
@@ -35,7 +36,7 @@ def movie_menu():
         if user_choice == ("a"):
             add_movie()
         elif user_choice == ("l"):
-            show_movie()
+            show_movies()
         elif user_choice == ("f"):
             find_movie()
         else:
@@ -54,8 +55,17 @@ def add_movie():
         'director': director
     })
 
+def show_movies():
+    for movie in movies:
+        print(f"Name: {movie['name']}")
+        print(f"Year: {movie['year']}")
+        print(f"Director: {movie['director']}")
+
+
+def find_movie():
+    print("nothing yet")
+
 
 movie_menu()
-print(movies)
 
 
