@@ -7,13 +7,13 @@
 - Stop running the program
 
 Tasks:
-[]: Decide where to store movies
+[x]: Decide where to store movies
 [x]: What is the format of the movie? - List
 [x]: Show user main interface/get input
 [x]: Allow user to add movie
-[]: Show all movies
-[]: Find movies
-[]: Stop program with 'q'
+[x]: Show all movies
+[x]: Find movies
+[x]: Stop program with 'q'
 
 """
 
@@ -36,7 +36,7 @@ def movie_menu():
         if user_choice == ("a"):
             add_movie()
         elif user_choice == ("l"):
-            show_movies()
+            show_movie()
         elif user_choice == ("f"):
             find_movie()
         else:
@@ -50,21 +50,28 @@ def add_movie():
 
     movies.append({
 
-        'name': name,
+        'name': name.lower(),
         'year': year,
-        'director': director
+        'director': director.lower()
     })
 
-def show_movies():
+def show_movie():
+    show_movie_details()
+
+def show_movie_details():
     for movie in movies:
         print(f"Name: {movie['name']}")
         print(f"Year: {movie['year']}")
         print(f"Director: {movie['director']}")
 
-
 def find_movie():
-    print("nothing yet")
-
+    search_type = input("What are you searching by? : ") #year, name, director
+    search_keyword = input("What are you searching for? : ")
+    found_movies = [] 
+    for movie in movies:
+        if movie[search_type] == search_keyword.lower():
+            found_movies.append(movie)
+            show_movie_details()
 
 movie_menu()
 
