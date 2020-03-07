@@ -16,7 +16,10 @@ Tasks:
 [x]: Stop program with 'q'
 [x]: Allow user to remove movie
 [] : Allow user to sort by date released, name and director
+[x]: Add secret function :)
 """
+
+import time
 
 movies = [] #defining list
 
@@ -42,6 +45,8 @@ def movie_menu():
             find_movie()
         elif user_choice == ("r"):
             remove_movie()
+        elif user_choice == ("secret_function"):
+            secret_function()
         else:
             print("unknown command, try again")
         user_choice = input("Enter 'a' to add movie, 'l' to see all movies, 'f' to find a movie, 'r' to remove a movie and 'q' to quit:")
@@ -68,7 +73,7 @@ def show_movie_details():
 def find_movie():
     search_type = input("What are you searching by? :") #year, name, director
     search_keyword = input("What are you searching for? :")
-    found_movies = [] 
+    found_movies = []
     for movie in movies:
         if movie[search_type] == search_keyword.lower():
             found_movies.append(movie)
@@ -82,6 +87,13 @@ def remove_movie():
         else:
             print("The movie you chose to remove is not avaliable, try again :")
 
+def secret_function(): #doesn't work rn
+    print("this is a secret function, nobody knows about this except everyone who goes through the source code")
+    time.sleep(1)
+    for movie in movies:
+        print(f"deleting movie {movies['name']}")
+        movies.remove(movie)
+    print("Sike bro all ur movies gone now")
+
+
 movie_menu()
-
-
